@@ -24,10 +24,10 @@ mains: recursives
 	gcc -g main.c libclassrec.a -lm -o mains
 
 maindloop: loopd
-	gcc -g main.c -lclassloops -L. -o maindloop
+	gcc -g main.c -lclassloops -L. -Wl,-rpath,. -o maindloop
 
 maindrec: recursived
-	gcc -g main.c -lclassrec -lm -L. -o maindrec
+	gcc -g main.c -lclassrec -lm -L. -Wl,-rpath,. -o maindrec
 
 all: maindrec maindloop mains
 
