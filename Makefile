@@ -8,17 +8,21 @@ advancedClassificationLoop.o: advancedClassificationLoop.c
 advancedClassificationRecursion.o: advancedClassificationRecursion.c 
 	gcc -g -c -Wall advancedClassificationRecursion.c -o advancedClassificationRecursion.o
 
-libclassloops.a: basicClassification.o advancedClassificationLoop.o
+loops: basicClassification.o advancedClassificationLoop.o
 	ar r libclassloops.a basicClassification.o advancedClassificationLoop.o
 
 libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	gcc -fPIC -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
 
-libclassrec.a: basicClassification.o advancedClassificationRecursion.o
+loopd: libclassloops.so
+
+recursives: basicClassification.o advancedClassificationRecursion.o
 	ar r libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
 libclassrec.so: basicClassification.o advancedClassificationRecursion.o
 	gcc -fPIC -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
+
+recursived: libclassrec.so
 
 mains: libclassrec.a
 	gcc -g main.c libclassrec.a -lm -o mains
