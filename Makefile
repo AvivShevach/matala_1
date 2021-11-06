@@ -24,7 +24,7 @@ libclassrec.so: basicClassification.o advancedClassificationRecursion.o
 
 recursived: libclassrec.so
 
-mains: libclassrec.a
+mains: recursives
 	gcc -g main.c libclassrec.a -lm -o mains
 
 maindloop: libclassloops.so
