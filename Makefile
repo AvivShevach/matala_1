@@ -11,19 +11,19 @@ advancedClassificationRecursion.o: advancedClassificationRecursion.c
 loops: basicClassification.o advancedClassificationLoop.o
 	ar r libclassloops.a basicClassification.o advancedClassificationLoop.o
 
-loopd: basicClassification.o advancedClassificationLoop.o
+libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	gcc -fPIC -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
 
 recursives: basicClassification.o advancedClassificationRecursion.o
 	ar r libclassrec.a basicClassification.o advancedClassificationRecursion.o
 
-recursived: basicClassification.o advancedClassificationRecursion.o
+libclassrec.so: basicClassification.o advancedClassificationRecursion.o
 	gcc -fPIC -shared basicClassification.o advancedClassificationRecursion.o -o libclassrec.so
 
-mains: recursives
+mains: libclassrec.so
 	gcc -g main.c libclassrec.a -lm -o mains
 
-maindloop: loopd
+maindloop: libclassloops.so
 	gcc -g main.c -lclassloops -L. -Wl,-rpath,. -o maindloop
 
 maindrec: recursived
