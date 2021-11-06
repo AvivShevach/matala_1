@@ -6,8 +6,6 @@ int main()
     int a, b;
     
     fscanf(stdin,"%d %d", &a, &b);
-
-  //  printf("Two numbers %d %d\n", a, b);
     printf("The Armstrong numbers are:");
     for(int i=a;i<=b;i++)
     {
