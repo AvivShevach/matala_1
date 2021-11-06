@@ -14,7 +14,6 @@ int isArmstrong2( int x, int i)
 }
 int isArmstrong3(int x)
 {
-    int k=x,i=0;
     if (x==0)
       return 0;
     return 1+isArmstrong3(x/10);
