@@ -8,8 +8,10 @@ advancedClassificationLoop.o: advancedClassificationLoop.c
 advancedClassificationRecursion.o: advancedClassificationRecursion.c 
 	gcc -g -c -Wall advancedClassificationRecursion.c -o advancedClassificationRecursion.o
 
-loops: basicClassification.o advancedClassificationLoop.o
+libclassloops.a: basicClassification.o advancedClassificationLoop.o
 	ar r libclassloops.a basicClassification.o advancedClassificationLoop.o
+
+loops: libclassloops.a
 
 libclassloops.so: basicClassification.o advancedClassificationLoop.o
 	gcc -fPIC -shared basicClassification.o advancedClassificationLoop.o -o libclassloops.so
@@ -33,7 +35,7 @@ maindloop: libclassloops.so
 maindrec: libclassrec.so
 	gcc -g main.c -lclassrec -lm -L. -Wl,-rpath,. -o maindrec
 
-all: maindrec maindloop mains
+all: maindrec maindloop mains loops
 
 clean:
 	rm *.a *.so *.o maindrec maindloop mains
