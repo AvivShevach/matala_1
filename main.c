@@ -1,17 +1,11 @@
 #include <stdio.h>
 #include "NumClass.h"
 
-int main(int argc, char **argv)
+int main()
 {
     int a, b;
     
-    if( argc !=3 )
-    {
-        printf("Usage: main <num1> <num2>\n");
-        return 1;
-    }
-    sscanf(argv[1],"%d", &a);
-    sscanf(argv[2],"%d", &b);
+    fscanf(stdin,"%d %d", &a, &b);
 
   //  printf("Two numbers %d %d\n", a, b);
     printf("The Armstrong numbers are:");
